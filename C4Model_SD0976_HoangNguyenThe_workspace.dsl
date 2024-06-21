@@ -62,9 +62,10 @@ workspace "Books Store System" "[NT][C4 model] SD0976-HoangNguyenThe" {
         backOfficeApplication -> adminWebApi "Administrate books and purchases" "JSON/HTTPS"
         searchApi -> elasticsearchDatabase "Retrieve book search data" "ODBC"
         publicWebApi -> elasticsearchDatabase "Retrieve book search data" "ODBC"
-        adminWebApi -> bookstoreDatabase "Reads/Write book detail data" "ODBC"
+        adminWebApi -> bookstoreDatabase "Reads book detail data" "ODBC"
         publisherRecurrentUpdater -> adminWebApi "Makes API calls to update the data changes" "JSON/HTTPS"
         adminWebApi -> bookEventSystem "Publish the Event"
+        bookEventSystem -> bookstoreDatabase "Write book detail data" "ODBC"
         bookEventSystem -> bookSearchEventConsumer "Forward the event"
         bookSearchEventConsumer -> elasticsearchDatabase "Write book info to the Elasticsearch Database" "NoSQL"
 
@@ -135,6 +136,7 @@ workspace "Books Store System" "[NT][C4 model] SD0976-HoangNguyenThe" {
             }
             element "NoSQL" {
                 shape Cylinder
+                background #1e90ff
             }
         }
 
