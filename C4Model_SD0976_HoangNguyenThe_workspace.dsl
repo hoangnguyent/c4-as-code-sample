@@ -76,16 +76,13 @@ workspace "Books Store System" "[NT][C4 model] SD0976-HoangNguyenThe" {
             tags "Async Request"
         }
 
-        # Relationship between Component with Container
-        bookService -> bookstoreDatabase "Reads/Write book detail data"
-
         # Relationship between Component with Component
         bookService -> authService "Authenticate/authorize"
         bookService -> bookEventPublisher "Call"
 
         # Relationship between Components and Other Containers
         authService -> authSystem "Authenticate user and authorize a request" "JSON/HTTPS"
-        bookService -> bookstoreDatabase "Read/Write data" "ODBC"
+        bookService -> bookstoreDatabase "Read/Write book detail" "ODBC"
         bookEventPublisher -> bookEventSystem "Publish events about book updating"
     }
 
