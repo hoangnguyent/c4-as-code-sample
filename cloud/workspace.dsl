@@ -1,4 +1,4 @@
-workspace extends ../models.dsl {
+workspace extends ../C4Model_SD0976_HoangNguyenThe_workspace.dsl {
     model {       
         # Deployment
         prodEnvironment = deploymentEnvironment "Production" {
@@ -26,7 +26,7 @@ workspace extends ../models.dsl {
                             deploymentNode "ec2-a" {
                                 tags "Amazon Web Services - EC2 Instance"
 
-                                searchWebApiInstance = containerInstance searchWebApi
+                                searchWebApiInstance = containerInstance searchApi
                                 publicWebApiInstance = containerInstance publicWebApi
                                 adminWebApiInstance = containerInstance adminWebApi
                                 publisherRecurrentUpdateInstance = containerInstance publisherRecurrentUpdater
@@ -35,15 +35,15 @@ workspace extends ../models.dsl {
                             deploymentNode "ec2-b" {
                                 tags "Amazon Web Services - EC2 Instance"
 
-                                containerInstance bookEventConsumer
-                                containerInstance bookEventStream
+                                containerInstance bookSearchEventConsumer
+                                containerInstance bookEventSystem
                             }
                         }
 
                         deploymentNode "Amazon Elasticsearch" {
                             tags "Amazon Web Services - Elasticsearch Service"
 
-                            containerInstance searchDatabase
+                            containerInstance elasticsearchDatabase
                         }
 
                         deploymentNode "PostgreSQL RDS" {
